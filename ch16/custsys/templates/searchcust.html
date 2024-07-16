@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<HTML lang="th">
+<HEAD>
+	<TITLE>ค้นหาข้อมูลลูกค้า</TITLE>
+	<META charset="UTF-8">
+</HEAD>
+<BODY>
+	<FORM action="{% url "selectcust" %}" method="POST">
+	{% csrf_token %}
+	<H1>ค้นหาข้อมูลลูกค้า</H1>
+	กรุณากรอกชื่อลูกค้า : <INPUT TYPE="text" name="firstname">
+	<INPUT TYPE="submit" VALUE="ค้นหา"><BR><BR>
+	{% if result_size is not None %}
+		{% if result_size > 0 %}
+		<TABLE BORDER=1>
+			<THEAD>
+				<TD align="center">ชื่อ</TD>
+				<TD align="center">นามสกุล</TD>
+				<TD align="center">อายุ</TD>
+				<TD align="center">เพศ</TD>
+				<TD align="center">เบอร์โทรศัพท์</TD>
+				<TD align="center">ที่อยู่</TD>
+				<TD align="center"></TD>
+			</THEAD>
+			{% for result in results %}
+			<TR>
+				<TD><A HREF="{% url "updatecust" %}?customer_id={{result.id}}">{{result.firstname}}</A></TD>
+				<TD>{{result.lastname}}</TD>
+				<TD>{{result.age}}</TD>
+				<TD>{{result.sex}}</TD>
+				<TD>{{result.tel}}</TD>
+				<TD>{{result.address}}</TD>
+				<TD><A HREF="{% url "delcust" %}?customer_id={{result.id}}">ลบข้อมูล</A></TD>
+			</TR>
+			{% endfor %}
+		</TABLE>
+		{% endif %}
+		{% if result_size == 0 %}
+		<p>ไม่พบข้อมูลลูกค้าที่ต้องการค้นหา</p>
+		{% endif %}
+	{% endif %}
+	<BR>
+	<A HREF="{% url "index" %}">กลับสู่หน้าเมนูหลัก - Homepage</A>
+	</FORM>
+</BODY>
+</HTML>

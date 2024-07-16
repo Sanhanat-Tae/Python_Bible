@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+	<TITLE>เพิ่มข้อมูลลูกค้า</TITLE>
+</HEAD>
+<BODY>
+	<FORM method="POST">
+	{% csrf_token %}
+	<H1>กรุณากรอกข้อมูลลูกค้า</H1>
+	ชื่อ : <INPUT TYPE="text" name="firstname"><BR>
+	นามสกุล : <INPUT TYPE="text" name="lastname"><BR>
+	อายุ : <INPUT TYPE="text" name="age"><BR>
+	เพศ :
+	<INPUT TYPE="radio" VALUE="M" NAME="sex">ชาย
+	<INPUT TYPE="radio" VALUE="F" NAME="sex" CHECKED>หญิง<BR>
+	เบอร์โทรศัพท์ : <INPUT TYPE="text" name="tel"><BR>
+	ที่อยู่ :<BR>
+	<TEXTAREA ROWS="5" COLS="60" NAME="address" ></TEXTAREA>
+	<BR><BR>
+	<INPUT TYPE="submit" VALUE="บันทึกข้อมูล">
+	<BR><BR>
+	<A HREF="{% url "index" %}">กลับสู่หน้าเมนูหลัก - Homepage</A>
+	{% if messages %}
+		{% for message in messages %}
+			<H2 style="color:green;">{{ message }}</H2>
+		{% endfor %}
+	{% endif %}
+	</FORM>
+</BODY>
+</HTML>

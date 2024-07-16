@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<HTML lang="th">
+<HEAD>
+	<TITLE>แก้ไขข้อมูลลูกค้า</TITLE>
+	<META charset="UTF-8">
+</HEAD>
+<BODY>
+	<FORM method="POST">
+	{% csrf_token %}
+	<H1>แก้ไขข้อมูลลูกค้า</H1>
+	<TABLE>
+	<TR>
+		<TD>ชื่อ :</TD>
+		<TD><INPUT TYPE="textbox" value="{{result.firstname}}" name="firstname"></TD>
+	</TR>
+	<TR>
+		<TD>นามสกุล : </TD>
+		<TD><INPUT TYPE="textbox" value="{{result.lastname}}" name="lastname"></TD>
+	</TR>
+	<TR>
+		<TD>อายุ : </TD>
+		<TD><INPUT TYPE="textbox" value="{{result.age}}" name="age"></TD>
+	</TR>
+	<TR>
+		<TD>เพศ : </TD>
+		<TD><INPUT TYPE="textbox" value="{{result.sex}}" name="sex"></TD>
+	</TR>
+	<TR>
+		<TD>เบอร์โทรศัพท์ : </TD>
+		<TD><INPUT TYPE="textbox" value="{{result.tel}}" name="tel"></TD>
+	</TR>
+	<TR>
+		<TD>ที่อยู่ : </TD>
+		<TD><INPUT TYPE="textarea" value="{{result.address}}" name="address"></TD>
+	</TR>
+	<TR>
+		<TD colspan=2><INPUT TYPE="submit" name="edit_save" VALUE="แก้ไขข้อมูล"><INPUT TYPE="hidden" NAME="customer_id" VALUE="{{result.id}}"></TD>
+	</TR>
+	</TABLE>
+	<BR>
+	<A HREF="{% url "selectcust" %}">กลับสู่หน้าค้นหาข้อมูลลูกค้า - Search Customer</A>
+	<BR><BR>
+	<A HREF="{% url "index" %}">กลับสู่หน้าเมนูหลัก - Homepage</A>
+	</FORM>
+	{% if messages %}
+	{% for message in messages %}
+		<H2 style="color:green;">{{ message }}</H2>
+	{% endfor %}
+	{% endif %}
+</BODY>
+</HTML>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="content-type" CONTENT="text/html;charset=UTF-8"/>
+<TITLE>บันทึกข้อมูลพนักงาน</TITLE>
+</HEAD>
+<BODY>
+     <FORM method="POST">
+          {% csrf_token %}
+          <B>กรุณากรอกข้อมูลพนักงาน</B><BR>
+          ชื่อพนักงาน : <INPUT TYPE="text" PLACEHOLDER="ชื่อ นามสกุล" NAME="empname" required><BR>
+          แผนก : <INPUT TYPE="text" PLACEHOLDER="แผนกที่สังกัด" NAME="deptname" required><BR>
+          อีเมล : <INPUT TYPE="text" PLACEHOLDER="example@email.com" name="email" required><BR>
+          เบอร์โทรศัพท์ : <INPUT TYPE="text" PLACEHOLDER="0001112222" name="tel" required><BR>
+          <INPUT TYPE="submit" VALUE"บันทึกข้อมูล" name="submit">
+          {% if messages %}
+                    {% for msg in messages %}
+                              <H2 style="color : blue;">{{msg}}</H2>
+                    {% endfor %}
+          {% endif %}
+     </FORM>
+</BODY>
+</HTML>
